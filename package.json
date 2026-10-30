@@ -1,0 +1,48 @@
+{
+  "name": "yalilai-cosmetics-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Yalilai Cosmetics Co., Ltd. — bilingual (EN / 简体中文) OEM/ODM makeup manufacturing website.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm run lint && npm run build",
+    "images:renders": "node scripts/prepare-renders.mjs",
+    "images:manifest": "node scripts/build-image-manifest.mjs",
+    "docs:images": "node scripts/write-image-manifest-doc.mjs"
+  },
+  "dependencies": {
+    "@gsap/react": "2.1.2",
+    "clsx": "2.1.1",
+    "gsap": "3.15.0",
+    "lucide-react": "1.52.0",
+    "next": "16.4.2",
+    "nodemailer": "10.0.14",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.186.1",
+    "zod": "4.6.5",
+    "zustand": "5.0.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.19.2",
+    "@types/nodemailer": "8.0.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "eslint": "^10.12.0",
+    "eslint-config-next": "16.4.2",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

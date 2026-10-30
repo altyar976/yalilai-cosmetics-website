@@ -1,0 +1,407 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------------------------------------------------
+   Yalilai design tokens — luminous ivory, warm greys, rich ink, restrained champagne.
+   -------------------------------------------------------------------------------------------- */
+@theme {
+  --color-ivory: #f8f6f2;
+  --color-porcelain: #fcfbf9;
+  --color-linen: #f1ede7;
+  --color-sand: #e7e1d8;
+  --color-stone: #cec5b9;
+  --color-muted: #6c625a;
+  --color-ink: #171513;
+  --color-graphite: #2c2825;
+  --color-champagne: #c4a77c;
+  --color-champagne-deep: #7c5f3e;
+  --color-rose: #c9a39a;
+  --color-blush: #ecdcd5;
+  --color-nude: #d8bfb3;
+  --color-render: #f4f1ec;
+  --color-success: #2f5d46;
+  --color-danger: #9b2f2a;
+
+  --font-display: var(--font-bodoni), var(--font-noto-serif-sc), "Songti SC", "STSong", serif;
+  --font-sans: var(--font-jost), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-3xl: 1920px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  html[lang="zh-CN"] body {
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 1.5px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  img {
+    user-select: none;
+  }
+  button {
+    cursor: pointer;
+  }
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 1520px;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    font-optical-sizing: auto;
+  }
+  html[lang="zh-CN"] .display {
+    letter-spacing: 0.02em;
+    line-height: 1.22;
+    font-weight: 500;
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-champagne-deep);
+  }
+  html[lang="zh-CN"] .eyebrow {
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+  }
+  .lede {
+    font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.22rem);
+    line-height: 1.7;
+    color: var(--color-graphite);
+    font-weight: 300;
+  }
+  html[lang="zh-CN"] .lede {
+    font-weight: 400;
+    line-height: 1.95;
+  }
+  .hairline {
+    border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
+  }
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-luxe);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    min-height: 3rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.4s var(--ease-luxe),
+      color 0.4s var(--ease-luxe),
+      border-color 0.4s var(--ease-luxe),
+      transform 0.4s var(--ease-luxe);
+    white-space: nowrap;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  html[lang="zh-CN"] .btn {
+    letter-spacing: 0.08em;
+    font-size: 0.86rem;
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-porcelain);
+  }
+  .btn-primary:hover {
+    background: var(--color-graphite);
+  }
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.16) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-luxe);
+  }
+  .btn-primary:hover::before {
+    transform: translateX(120%);
+  }
+  .btn-ghost {
+    border: 1px solid color-mix(in oklab, var(--color-ink) 22%, transparent);
+    color: var(--color-ink);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-ink);
+    background: color-mix(in oklab, var(--color-ink) 4%, transparent);
+  }
+  .btn-light {
+    background: var(--color-porcelain);
+    color: var(--color-ink);
+  }
+  .btn-light:hover {
+    background: #fff;
+  }
+  .btn-sm {
+    min-height: 2.5rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.7rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid color-mix(in oklab, var(--color-ink) 14%, transparent);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    color: var(--color-graphite);
+    background: transparent;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s,
+      color 0.3s;
+  }
+  .chip[aria-pressed="true"],
+  .chip[data-active="true"] {
+    background: var(--color-ink);
+    color: var(--color-porcelain);
+    border-color: var(--color-ink);
+  }
+  .chip:hover {
+    border-color: var(--color-ink);
+  }
+  .concept-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    background: rgb(252 251 249 / 0.86);
+    color: var(--color-champagne-deep);
+    border: 1px solid color-mix(in oklab, var(--color-champagne) 45%, transparent);
+    backdrop-filter: blur(6px);
+  }
+  html[lang="zh-CN"] .concept-badge {
+    letter-spacing: 0.06em;
+    font-size: 0.68rem;
+  }
+  .field {
+    width: 100%;
+    border: 1px solid color-mix(in oklab, var(--color-ink) 16%, transparent);
+    background: var(--color-porcelain);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    font-size: 1rem; /* >=16px avoids iOS zoom */
+    color: var(--color-ink);
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-ink);
+    box-shadow: 0 0 0 4px rgb(23 21 19 / 0.06);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  .label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  html[lang="zh-CN"] .label {
+    letter-spacing: 0.04em;
+    font-size: 0.86rem;
+  }
+  .card-surface {
+    background: var(--color-porcelain);
+    border: 1px solid color-mix(in oklab, var(--color-ink) 7%, transparent);
+    border-radius: 1.25rem;
+  }
+  .shimmer-backdrop {
+    background:
+      radial-gradient(60% 80% at 20% 20%, rgb(236 220 213 / 0.55), transparent 60%),
+      radial-gradient(50% 70% at 85% 70%, rgb(196 167 124 / 0.22), transparent 60%),
+      linear-gradient(180deg, #1b1816, #110f0e);
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>");
+    mix-blend-mode: multiply;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+/* Marquee — paused when offscreen (data-paused) or with reduced motion */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  animation: marquee var(--marquee-duration, 48s) linear infinite;
+  will-change: transform;
+}
+[data-paused="true"] .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-60%) rotate(8deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(160%) rotate(8deg);
+    opacity: 0;
+  }
+}
+.shimmer-sweep {
+  animation: shimmer-sweep 7s var(--ease-soft) infinite;
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(calc(var(--r, 0deg) + 1.5deg));
+  }
+}
+.float-soft {
+  animation: float-soft var(--d, 7s) var(--ease-soft) infinite;
+}
+
+/* JS-driven reveals: content is visible by default; motion only adds polish. */
+.js [data-reveal] {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track,
+  .float-soft,
+  .shimmer-sweep {
+    animation: none !important;
+  }
+}
+
+@media print {
+  header[data-site-header],
+  footer[data-site-footer],
+  [data-no-print] {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Focus rings that stay visible on dark surfaces */
+.bg-ink :focus-visible,
+footer :focus-visible,
+.shimmer-backdrop :focus-visible,
+dialog :where(.bg-ink) :focus-visible {
+  outline-color: var(--color-champagne);
+}

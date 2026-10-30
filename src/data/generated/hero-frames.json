@@ -1,0 +1,6 @@
+{
+ "count": 36,
+ "desktop": "/images/hero/frames/d/f{i}.webp",
+ "mobile": "/images/hero/frames/m/f{i}.webp",
+ "poster": "/images/hero/poster.webp"
+}
